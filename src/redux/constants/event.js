@@ -1,9 +1,5 @@
-export const GET_ALL_INTERNAL_EVENTS = 'GET_ALL_INTERNAL_EVENTS';
+export const UPVOTE = 'UPVOTE';
 
-export const ADD_EVENT = 'ADD_EVENT';
-
-export const DELETE_EVENT = 'DELETE_EVENT';
-
-export const UPDATE_EVENT = 'UPDATE_EVENT';
+export const DOWNVOTE = 'DOWNVOTE';
 
 export const GET_ALL_EXTERNAL_EVENTS = 'GET_ALL_EXTERNAL_EVENTS'

@@ -1,3 +1,5 @@
+// I've unplugged this Navbar (by naming it something other than Navbar), but it contains the bootstrap login navbar code, for reference
+
 import React, { Component } from 'react';
 
 class Navbar extends Component {

@@ -1,5 +1,5 @@
-const SIGN_UP = 'SIGN_UP';
+export const SIGN_UP = 'SIGN_UP';
 
-const LOGIN = 'LOGIN';
+export const LOGIN = 'LOGIN';
 
-const LOGOUT = 'LOGOUT';
+export const LOGOUT = 'LOGOUT';

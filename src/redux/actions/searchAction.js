@@ -3,11 +3,11 @@ import {
     GET_EVENTS_BY_CATEGORY,
     GET_EVENTS_BY_DATE
 } from '../constants/search';
-import Axios from './Axios/Axios';
+import axios from 'axios';
 
-export const getEventsByLocation = (data) => dispatch => {
+export const getEventsByLocation = (zip) => dispatch => {
 
-    Axios.get('/search/geteventsbylocation', data)
+    axios.get(`https://api.seatgeek.com/2/events?client_id=MTU3MTM3NDV8MTU1MjMyMjUyNC4yOQ&postal_code=${zip}`)
     .then(result => {
         dispatch({
             type: GET_EVENTS_BY_LOCATION,
@@ -16,9 +16,9 @@ export const getEventsByLocation = (data) => dispatch => {
     })
 }
 
-export const getEventsByCategory = (data) => dispatch => {
+export const getEventsByCategory = (cat) => dispatch => {
 
-    Axios.get('/search/geteventsbycategory', data)
+    axios.get(`https://api.seatgeek.com/2/events?client_id=MTU3MTM3NDV8MTU1MjMyMjUyNC4yOQ&type=${cat}`)
     .then(result => {
         dispatch({
             type: GET_EVENTS_BY_CATEGORY,
@@ -27,9 +27,9 @@ export const getEventsByCategory = (data) => dispatch => {
     })
 }
 
-export const getEventsByDate = (data) => dispatch => {
+export const getEventsByDate = (date) => dispatch => {
 
-    Axios.get('/search/geteventsbydate', data)
+    axios.get(`https://api.seatgeek.com/2/events?client_id=MTU3MTM3NDV8MTU1MjMyMjUyNC4yOQ&datetime_local=?${date}`)
     .then(result => {
         dispatch({
             type: GET_EVENTS_BY_DATE,

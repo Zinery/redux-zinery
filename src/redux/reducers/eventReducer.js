@@ -1,15 +1,14 @@
 import {
-    GET_ALL_INTERNAL_EVENTS,
-    ADD_EVENT,
-    DELETE_EVENT,
-    UPDATE_EVENT,
+    UPVOTE,
+    DOWNVOTE,
     GET_ALL_EXTERNAL_EVENTS
 } from '../constants/event';
+import uuid from 'uuid/v4';
 
 
-let initialState = {
-    eventArray: [], 
-    eventApiArray: [],
+let initialState = { 
+    eventApiArray: []
+    
 };
 
 export default (state = initialState, action) => {
@@ -17,21 +16,31 @@ export default (state = initialState, action) => {
 
     console.log(action.payload)
     switch(action.type){
-        case GET_ALL_INTERNAL_EVENTS:
-            updated.events = action.payload
-            return updated
-        
-        case ADD_EVENT:
-            updated.events.push(action.payload)
-            return updated
 
-        case UPDATE_EVENT:
-            
-            return updated
+        case UPVOTE:
+            updated.eventVotes.forEach(event => {
+                if (event.id === action.id) {
+                    event.voteCount += 1;
+                }else{
+                    let eventObj = {
+                        id: uuid(),
+                        eventID: action.payload.id,
+                        voteCount: 1
+                    }
+                    return eventObj
+                }
+            });
 
-        case DELETE_EVENT:
+            return updated;
 
-            return updated
+        case DOWNVOTE:
+            updated.events.forEach(event => {
+                if (event.id === action.id) {
+                event.voteCount -= 1;
+                }
+            });
+
+            return updated;
         
         case GET_ALL_EXTERNAL_EVENTS:
 
@@ -42,7 +51,7 @@ export default (state = initialState, action) => {
                         title: event.title,
                         type: event.type,
                         url: event.url,
-                        image: event.performers,
+                        image: event.performers[0].image,
                         location: event.venue.display_location,
                         date: event.datetime_utc,
                         price: event.stats.average_price
@@ -50,7 +59,6 @@ export default (state = initialState, action) => {
                     return eventObj
                 })
             
-            console.log('reducer update: ', updated)
             return updated
 
 
