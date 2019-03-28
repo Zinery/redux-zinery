@@ -9,7 +9,7 @@ import {connect} from 'react-redux';
 import {getAllExternalEvents} from '../../../redux/actions/eventAction';
 
 import Event from '../Body/Events/Event/Event';
-import EventList from './Events/EventList/EventList'
+import Vote from './Events/Vote/Vote'
 
 
 class Body extends Component {
@@ -22,10 +22,12 @@ class Body extends Component {
 
   render() {
     const events = this.props.events.eventApiArray
+    
     console.log(events)
     
     return(
       events.map((event) => { 
+        let vote = <Vote event = {event}/>
           return (
             
               <div className="component-Body">
@@ -34,13 +36,14 @@ class Body extends Component {
                   <div className="event-card-details-container">
                     <h6>{event.title}</h6>
                     <br />
-                    <ul id={event.id}>
-                    <li>{event.type}</li>
-                      <li>{event.location}</li>
-                      <li>{event.date}</li>
-                      <li>{event.price}</li>
-                      <li><a href={event.url}>Purchase</a></li>
-                    </ul>
+                    <section id={event.id}>
+                       <p>{event.type}</p>
+                      <p>{event.location}</p>
+                      <p>{event.date}</p>
+                      <p>{event.price}</p>
+                      <p><a href={event.url} target='_blank' rel='noopener noreferrer'>Seatgeek </a></p>
+                    </section>
+                    {vote}
                   </div>
                 </div>
               </div>

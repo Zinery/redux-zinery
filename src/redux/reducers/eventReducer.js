@@ -14,28 +14,21 @@ let initialState = {
 export default (state = initialState, action) => {
     let updated = Object.assign({}, state);
 
-    console.log(action.payload)
+    console.log(action)
     switch(action.type){
 
         case UPVOTE:
-            updated.eventVotes.forEach(event => {
+            updated.eventApiArray.forEach(event => {
                 if (event.id === action.id) {
                     event.voteCount += 1;
-                }else{
-                    let eventObj = {
-                        id: uuid(),
-                        eventID: action.payload.id,
-                        voteCount: 1
-                    }
-                    return eventObj
                 }
             });
 
             return updated;
 
         case DOWNVOTE:
-            updated.events.forEach(event => {
-                if (event.id === action.id) {
+            updated.eventApiArray.forEach(event => {
+                if (event.id === action.id & event.voteCount !== 0) {
                 event.voteCount -= 1;
                 }
             });
@@ -54,7 +47,8 @@ export default (state = initialState, action) => {
                         image: event.performers[0].image,
                         location: event.venue.display_location,
                         date: event.datetime_utc,
-                        price: event.stats.average_price
+                        price: event.stats.average_price,
+                        voteCount: 0
                     }
                     return eventObj
                 })

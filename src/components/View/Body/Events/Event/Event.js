@@ -21,26 +21,26 @@ class Event extends Component {
     return(
         <React.Fragment>
           {
-            events.map(event => {
-              return(
+            
+              
               <div className="event-card">
                 <div className="event-card-img-container">
-                  <img src = {event.image} />
+                  <img src = {events.image} />
                 </div>
                 <div className="event-card-details-container">
                   <h6>Event Details</h6>
                   <br />
                   
-                    <p key={event.id}>
-                      <span> {event.type} </span> |{` `}
+                    <p key={events.id}>
+                      <span> {events.type} </span> |{` `}
                       <span> </span>
                       <EventList/>
                     </p>
                   
                 </div>
               </div>
-              )
-            })
+              
+           
           }
         </React.Fragment>
     )
